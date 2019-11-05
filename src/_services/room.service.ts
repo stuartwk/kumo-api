@@ -15,7 +15,7 @@ import * as jwt from 'jsonwebtoken';
 @Injectable()
 export class RoomService {
 
-    private logger: Logger = new Logger('RoomService');
+    // private logger: Logger = new Logger('RoomService');
 
     constructor(
         @InjectRepository(RoomEntity)
