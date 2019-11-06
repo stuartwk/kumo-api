@@ -8,20 +8,29 @@ import opennode = require('opennode');
 @Injectable()
 export class OpenNodeService {
 
+    private logger: Logger = new Logger('OpenNodeService');
+
     constructor(private configService: ConfigService) {
         const invoice_key = this.configService.get('OPEN_NODE_INVOICES_KEY');
-        opennode.setCredentials(invoice_key, (this.configService.get('NODE_ENV') ? 'live' : 'dev'));
-    }
+        const env = this.configService.get('NODE_ENV');
 
-    private logger: Logger = new Logger('OpenNodeService');
+        if (env) {
+            opennode.setCredentials(invoice_key);
+        } else {
+            opennode.setCredentials(invoice_key, 'dev');
+        }
+
+        this.logger.log((env) ? env : 'development');
+
+    }
 
     async createCharge(): Promise<OpenNodeInvoiceDto> {
 
         try {
-
+            const amount = this.configService.get('OPEN_NODE_CHARGE');
             const callback_url = this.configService.get('OPEN_NODE_CALLBACK_URL');
             const charge = await opennode.createCharge({
-                amount: 10,
+                amount,
                 callback_url,
                 auto_settle: false,
             });

@@ -3,8 +3,10 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
+  app.enableCors({
+    origin: [/kumo\.chat$/, /api\.opennode\.co$/, 'http://localhost:4200'],
+  });
 
-  await app.listen(3000, (process.env.NODE_ENV ? 'localhost' : process.env.HOST_URL));
+  await app.listen(3000);
 }
 bootstrap();
