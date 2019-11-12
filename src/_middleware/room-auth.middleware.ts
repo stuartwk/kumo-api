@@ -30,7 +30,7 @@ export class RoomAuthMiddleware implements NestMiddleware {
       const hash = crypto.createHmac('sha256', password).digest('hex');
 
       if (hash !== room.password) {
-        throw new HttpException('Password mismatch.', HttpStatus.UNAUTHORIZED);
+        throw new HttpException('Password is incorrect. Please try again.', HttpStatus.UNAUTHORIZED);
       }
 
     }
