@@ -58,7 +58,16 @@ export class RoomsController {
 
       const errors = {User: ' not found'};
       if (!_room) {
-        throw new HttpException({errors}, 401);
+        throw new HttpException({errors}, 404);
+      }
+
+      // if cron job still hasn't cleared out the room, double check it is still valid
+      const _now = new Date();
+      const _created_at = new Date(_room.createdAt);
+      const _expiration_date = new Date(_created_at.setDate(_created_at.getDate() + 1));
+
+      if (_now.getTime() > _expiration_date.getTime()) {
+        throw new HttpException({errors}, 404);
       }
 
       const room = {

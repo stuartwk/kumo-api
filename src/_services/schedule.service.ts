@@ -28,8 +28,6 @@ export class ScheduleService extends NestSchedule {
     @Cron('0 0 * ? * *') // once an hour
     async clearRooms() {
 
-        this.logger.log('executing cron job');
-
         // clear rooms
         const clear_room_date = new Date();
         clear_room_date.setDate(clear_room_date.getDate() - 1);
