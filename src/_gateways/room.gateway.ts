@@ -46,8 +46,11 @@ export class RoomGateway {
 
     } catch (err) {
 
-      this.logger.error('oh no, jwt is messed up');
-      // err
+      this.logger.error('join chat room jwt error: ');
+      this.logger.error(err);
+
+      return;
+
     }
 
   }
@@ -88,8 +91,10 @@ export class RoomGateway {
 
     } catch (err) {
 
-      this.logger.error('oh no, jwt is messed up');
-      // err
+      this.logger.error('send message: jwt error');
+      this.logger.error(err);
+      return;
+
     }
 
   }
@@ -122,8 +127,10 @@ export class RoomGateway {
 
     } catch (err) {
 
-      this.logger.error('oh no, jwt is messed up');
-      // err
+      this.logger.error('roll call: jwt error');
+      this.logger.error(err);
+      return;
+
     }
 
     return;
