@@ -1,7 +1,4 @@
 
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-
 ## Description
 
 [kumo.chat](https://kumo.chat) chat application. Rent chat rooms anyonymous that self destruct in 24 hours, using the Lightning Network for payments. Built ontop of the Nest Framework.
